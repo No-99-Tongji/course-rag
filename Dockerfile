@@ -24,9 +24,8 @@ RUN uv sync --no-dev
 COPY app ./app
 COPY scripts ./scripts
 COPY data/processed ./data/processed
-COPY data/index ./data/index
 COPY --from=frontend-builder /static ./static
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "uv run uvicorn app.main:app --host 0.0.0.0 --port ${PORT}"]
+CMD ["sh", "-c", "uv run python scripts/build_index.py && uv run python scripts/build_embeddings.py && uv run uvicorn app.main:app --host 0.0.0.0 --port ${PORT}"]

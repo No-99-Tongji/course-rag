@@ -25,6 +25,8 @@ services:
       - .env
     environment:
       DATABASE_URL: mysql+aiomysql://${APP_MYSQL_USER:-course_rag}:${APP_MYSQL_PASSWORD:-course_rag}@mysql:3306/${MYSQL_DATABASE:-course_rag}
+    volumes:
+      - rag_index:/app/data/index
     depends_on:
       mysql:
         condition: service_healthy
@@ -32,3 +34,4 @@ services:
 
 volumes:
   mysql_data:
+  rag_index:
