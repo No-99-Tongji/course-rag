@@ -26,6 +26,7 @@ class InviteCode(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     code_hash: Mapped[str] = mapped_column(String(64), unique=True, index=True)
+    code: Mapped[str | None] = mapped_column(String(128), nullable=True)
     kind: Mapped[Literal["original", "derived"]] = mapped_column(Enum("original", "derived", name="invite_kind"))
     parent_invite_id: Mapped[int | None] = mapped_column(ForeignKey("invite_codes.id"), nullable=True)
     created_by_admin_id: Mapped[int | None] = mapped_column(ForeignKey("admins.id"), nullable=True)
@@ -41,6 +42,7 @@ class Token(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     token_hash: Mapped[str] = mapped_column(String(64), unique=True, index=True)
+    token: Mapped[str | None] = mapped_column(String(256), nullable=True)
     invite_id: Mapped[int] = mapped_column(ForeignKey("invite_codes.id"), unique=True)
     active_session_id: Mapped[int | None] = mapped_column(ForeignKey("token_sessions.id", use_alter=True), nullable=True)
     revoked_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)

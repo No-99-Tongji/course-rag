@@ -121,7 +121,7 @@ textarea {
   margin-bottom: 6px;
 }
 
-.code-row {
+.code-row, .inline-secret {
   align-items: center;
   background: #f1f3f4;
   border-radius: 12px;
@@ -129,6 +129,23 @@ textarea {
   gap: 12px;
   justify-content: space-between;
   padding: 10px;
+}
+
+.inline-secret {
+  max-width: 360px;
+}
+
+.inline-secret button {
+  padding: 6px 10px;
+}
+
+.card pre {
+  background: #f8fafd;
+  border-radius: 10px;
+  line-height: 1.55;
+  overflow: auto;
+  padding: 14px;
+  white-space: pre-wrap;
 }
 
 code {

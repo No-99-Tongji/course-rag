@@ -8,7 +8,7 @@ export default function App() {
   return (
     <div>
       <nav className="topbar">
-        <Link to="/chat">课程 RAG</Link>
+        <Link to="/chat">API 使用说明</Link>
         <Link to="/redeem">兑换 token</Link>
         <Link to="/admin">管理员</Link>
       </nav>

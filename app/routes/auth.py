@@ -41,7 +41,7 @@ async def redeem_invite(request: RedeemInviteRequest, session: Annotated[AsyncSe
             raise error(status.HTTP_400_BAD_REQUEST, "INVITE_REDEEMED")
 
         raw_token = generate_token()
-        token = Token(token_hash=hash_secret(raw_token), invite_id=invite.id)
+        token = Token(token_hash=hash_secret(raw_token), token=raw_token, invite_id=invite.id)
         session.add(token)
         await session.flush()
 
@@ -53,7 +53,7 @@ async def redeem_invite(request: RedeemInviteRequest, session: Annotated[AsyncSe
             for _ in range(2):
                 code = unique_invite()
                 derived_invites.append(code)
-                session.add(InviteCode(code_hash=hash_secret(code), kind="derived", parent_invite_id=invite.id))
+                session.add(InviteCode(code_hash=hash_secret(code), code=code, kind="derived", parent_invite_id=invite.id))
 
     return RedeemInviteResponse(
         token=raw_token,

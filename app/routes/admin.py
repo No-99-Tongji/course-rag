@@ -62,6 +62,7 @@ async def create_invite(
     code = generate_invite_code()
     invite = InviteCode(
         code_hash=hash_secret(code),
+        code=code,
         kind="original",
         created_by_admin_id=int(admin_payload["sub"]),
     )
@@ -79,6 +80,7 @@ async def list_invites(
     return [
         InviteListItem(
             id=invite.id,
+            code=invite.code,
             kind=invite.kind,
             parent_invite_id=invite.parent_invite_id,
             created_by_admin_id=invite.created_by_admin_id,
@@ -105,6 +107,7 @@ async def list_tokens(
     return [
         TokenListItem(
             id=token.id,
+            token=token.token,
             invite_id=token.invite_id,
             revoked_at=token.revoked_at,
             created_at=token.created_at,

@@ -35,6 +35,7 @@ export type AskResponse = {
 
 export type InviteItem = {
   id: number;
+  code: string | null;
   kind: string;
   parent_invite_id: number | null;
   created_by_admin_id: number | null;
@@ -45,6 +46,7 @@ export type InviteItem = {
 
 export type TokenItem = {
   id: number;
+  token: string | null;
   invite_id: number;
   revoked_at: string | null;
   created_at: string;

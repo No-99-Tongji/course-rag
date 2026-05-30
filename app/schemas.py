@@ -76,6 +76,7 @@ class CreateInviteResponse(BaseModel):
 
 class InviteListItem(BaseModel):
     id: int
+    code: str | None
     kind: str
     parent_invite_id: int | None
     created_by_admin_id: int | None
@@ -86,6 +87,7 @@ class InviteListItem(BaseModel):
 
 class TokenListItem(BaseModel):
     id: int
+    token: str | None
     invite_id: int
     revoked_at: datetime | None
     created_at: datetime

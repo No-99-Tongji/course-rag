@@ -81,8 +81,9 @@ export default function AdminPage() {
             <div className="code-row"><code>{newInvite}</code><button onClick={() => navigator.clipboard.writeText(newInvite)}>复制</button></div>
           </div>
         )}
-        <Table headers={['ID', '类型', '父邀请码', '已兑换 token', '兑换时间', '创建时间']} rows={invites.map((invite) => [
+        <Table headers={['ID', '邀请码', '类型', '父邀请码', '已兑换 token', '兑换时间', '创建时间']} rows={invites.map((invite) => [
           invite.id,
+          invite.code ? <CopyValue value={invite.code} /> : '-',
           invite.kind,
           invite.parent_invite_id || '-',
           invite.redeemed_token_id || '-',
@@ -92,8 +93,9 @@ export default function AdminPage() {
       </section>
       <section className="card stack">
         <h2>Token</h2>
-        <Table headers={['ID', '邀请码', '状态', '活跃连接', '过期时间', '创建时间', '操作']} rows={tokens.map((token) => [
+        <Table headers={['ID', 'Token', '邀请码', '状态', '活跃连接', '过期时间', '创建时间', '操作']} rows={tokens.map((token) => [
           token.id,
+          token.token ? <CopyValue value={token.token} /> : '-',
           token.invite_id,
           token.revoked_at ? '已撤销' : '有效',
           token.active_session_id || '-',
@@ -115,6 +117,15 @@ export default function AdminPage() {
         ])} />
       </section>
     </main>
+  );
+}
+
+function CopyValue({ value }: { value: string }) {
+  return (
+    <div className="inline-secret">
+      <code>{value}</code>
+      <button type="button" onClick={() => navigator.clipboard.writeText(value)}>复制</button>
+    </div>
   );
 }
 
