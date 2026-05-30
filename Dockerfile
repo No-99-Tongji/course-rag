@@ -1,3 +1,11 @@
+FROM node:22-slim AS frontend-builder
+
+WORKDIR /frontend
+COPY frontend/package*.json ./
+RUN HTTP_PROXY= HTTPS_PROXY= ALL_PROXY= http_proxy= https_proxy= all_proxy= npm install
+COPY frontend ./
+RUN HTTP_PROXY= HTTPS_PROXY= ALL_PROXY= http_proxy= https_proxy= all_proxy= npm run build
+
 FROM python:3.11-slim
 
 WORKDIR /app
@@ -14,9 +22,9 @@ COPY pyproject.toml uv.lock* ./
 RUN uv sync --no-dev
 
 COPY app ./app
-COPY static ./static
 COPY scripts ./scripts
 COPY data/processed ./data/processed
+COPY --from=frontend-builder /static ./static
 
 RUN uv run python scripts/build_index.py && uv run python scripts/build_embeddings.py
 
