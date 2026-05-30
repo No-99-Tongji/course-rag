@@ -1,6 +1,6 @@
 ---
 name: course-rag
-description: Query the Software Engineering Economics course RAG service. Requires two arguments: token and question. Example: /course-rag token=cr_xxx 什么是软件成本估算？
+description: Query the Software Engineering Economics course RAG service. Requires two arguments - token and question.
 ---
 
 # Course RAG Skill

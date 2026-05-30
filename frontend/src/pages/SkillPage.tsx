@@ -11,13 +11,14 @@ export default function SkillPage() {
       <section className="card stack">
         <h2>安装方式</h2>
 
-        <h3>方式 1：从 GitHub 安装（推荐）</h3>
-        <p>在 Claude Code 中执行：</p>
-        <pre>{`/plugin install https://github.com/No-99-Tongji/course-rag-plugin`}</pre>
+        <h3>方式 1：添加 marketplace（推荐）</h3>
+        <p>在 Claude Code 中依次执行：</p>
+        <pre>{`/plugin marketplace add https://github.com/No-99-Tongji/course-rag-plugin`}</pre>
+        <pre>{`/plugin install course-rag`}</pre>
 
         <h3>方式 2：本地安装</h3>
         <pre>{`git clone https://github.com/No-99-Tongji/course-rag-plugin.git
-/plugin install --plugin-dir course-rag-plugin`}</pre>
+/plugin install --plugin-dir course-rag-plugin/course-rag-plugin`}</pre>
 
         <h3>方式 3：手动复制</h3>
         <pre>{`mkdir -p ~/.claude/skills/course-rag
