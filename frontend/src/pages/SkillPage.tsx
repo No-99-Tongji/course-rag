@@ -14,7 +14,7 @@ export default function SkillPage() {
         <h3>方式 1：添加 marketplace（推荐）</h3>
         <p>在 Claude Code 中依次执行：</p>
         <pre>{`/plugin marketplace add https://github.com/No-99-Tongji/course-rag-plugin`}</pre>
-        <pre>{`/plugin install course-rag`}</pre>
+        <pre>{`/plugin install course-rag-plugin@course-rag`}</pre>
 
         <h3>方式 2：本地安装</h3>
         <pre>{`git clone https://github.com/No-99-Tongji/course-rag-plugin.git
